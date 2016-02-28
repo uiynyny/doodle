@@ -1,24 +1,20 @@
 package view;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import javafx.stage.FileChooser;
+
+import model.IView;
 import model.Model;
 import Paint.*;
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Element;
-
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.logging.Filter;
 
 /**
  * Created by Dexter on 2/18/2016.
  */
-public class MenuBar extends JMenuBar {
+public class MenuBar extends JMenuBar implements IView{
 
     private Model model;
     private JMenu file = new JMenu("File");
@@ -41,6 +37,7 @@ public class MenuBar extends JMenuBar {
         this.add(file);
         this.add(view);
         this.registerController();
+        this.model.addView(this);
     }
     private void registerController(){
 
@@ -93,6 +90,7 @@ public class MenuBar extends JMenuBar {
                 fc.setAcceptAllFileFilterUsed(true);
                 int ret = fc.showSaveDialog(this);
                 if(ret== JFileChooser.APPROVE_OPTION){
+                    model.setDirty(false);
                     String extention =fc.getFileFilter().getDescription();
                     File file = fc.getSelectedFile();
                     FileOutputStream out;
@@ -216,5 +214,14 @@ public class MenuBar extends JMenuBar {
                 ex.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public void updateView() {
+        if(model.getDirty()==true){
+            save.setEnabled(true);
+        }else{
+            save.setEnabled(false);
+        }
     }
 }

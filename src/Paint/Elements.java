@@ -1,9 +1,7 @@
 package Paint;
 
-import javax.swing.text.Element;
 import java.awt.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by temp user on 25/02/16.

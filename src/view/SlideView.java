@@ -4,11 +4,7 @@ import model.IView;
 import model.Model;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Dexter on 2/18/2016.
@@ -67,6 +63,7 @@ public class SlideView extends JPanel implements IView {
         });
 
         this.play.addActionListener(e-> {
+            model.setPlayflag(true);
             model.play();
         });
         this.start.addActionListener(e-> {

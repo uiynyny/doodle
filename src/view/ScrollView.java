@@ -5,8 +5,6 @@ import model.Model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 /**
  * Created by temp user on 27/02/16.

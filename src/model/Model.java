@@ -2,10 +2,8 @@ package model;
 
 import Paint.*;
 import javax.swing.*;
-import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -29,11 +27,23 @@ public class Model extends Object {
     private int defHeight=400;
     private int newWidth=600;
     private int newHeight=400;
-    public double hratio;
-    public double vratio;
+    private double hratio;
+    private double vratio;
     public boolean menuflag;
 
+    private Boolean dirty=false;
+    private Boolean playflag=false;
+    public void setPlayflag(Boolean b){
+        playflag=b;
+    }
 
+    public void setDirty(Boolean b){
+        dirty=b;
+        updateAllViews();
+    }
+    public Boolean getDirty(){
+        return dirty;
+    }
     public void setRatio(){
         if(size==0) {
             hratio = (double) newWidth / (double) defWidth;
@@ -124,19 +134,22 @@ public class Model extends Object {
     public Model(){}
 
     public void toolPressed(Point e){
-        menuflag=false;
-        motion = new ArrayList();
-        if(size==0){
-            e.x=(int)(e.x/hratio);
-            e.y=(int)(e.y/vratio);
+        if(!playflag) {
+            setDirty(true);
+            menuflag = false;
+            motion = new ArrayList();
+            if (size == 0) {
+                e.x = (int) (e.x / hratio);
+                e.y = (int) (e.y / vratio);
+            }
+            Elements ep = new Elements(e, curcolor, strokeWidth);
+            holder.add(motion);
+            motion.add(ep);
+            updateAllViews();
         }
-        Elements ep = new Elements(e, curcolor, strokeWidth);
-        holder.add(motion);
-        motion.add(ep);
-        updateAllViews();
     }
     public void toolReleased(Point e){
-        if(!menuflag) {
+        if(!menuflag&&!playflag) {
             if(size==0){
                 e.x=(int)(e.x/hratio);
                 e.y=(int)(e.y/vratio);
@@ -158,7 +171,7 @@ public class Model extends Object {
         }
     }
     public void toolDragged(Point e){
-        if(!menuflag) {
+        if(!menuflag&&!playflag) {
             if(size==0){
                 e.x=(int)(e.x/hratio);
                 e.y=(int)(e.y/vratio);
@@ -186,7 +199,6 @@ public class Model extends Object {
     Timer t;
 
     public void play(){
-
         holder.clear();
         lineIt = elemList.iterator();
 
@@ -204,6 +216,7 @@ public class Model extends Object {
                     pointIt=((ArrayList<Elements>)lineIt.next()).iterator();
                     t.start();
                 }else{
+                    playflag=false;
                     this.updateAllViews();
                 }
             }

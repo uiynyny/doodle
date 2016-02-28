@@ -17,9 +17,7 @@ public class Main {
         JMenuBar mb = new MenuBar(model);
         SlideView slideView= new SlideView(model);
         ToolView toolView = new ToolView(model);
-        //GraphicView graphicView = new GraphicView(model);
         ScrollView scrollView = new ScrollView(model);
-        //JScrollPane scrollPane=new JScrollPane(graphicView);
         JScrollPane scrollPane=new JScrollPane(scrollView);
 
         frame.setJMenuBar(mb);

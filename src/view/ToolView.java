@@ -5,7 +5,6 @@ import model.Model;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -13,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Line2D;
 
 /**
  * Created by Dexter on 2/19/2016.
@@ -28,7 +26,6 @@ public class ToolView extends JToolBar implements IView{
     private JButton colorYellow = new JButton();
     private JButton colorMagenta = new JButton();
     private JButton colorBlue = new JButton();
-    private JButton eraser = new JButton(new ImageIcon("9.GIF"));
     private JPanel ccPanel = new JPanel();
     private JColorChooser colorChooser = new JColorChooser(Color.BLACK);
     //private JButton openCC = new JButton("ColorChooser");
@@ -179,12 +176,6 @@ public class ToolView extends JToolBar implements IView{
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setCurcolor(Color.yellow);
-            }
-        });
-        this.eraser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.setCurcolor(Color.WHITE);
             }
         });
         this.sizeSlider.addChangeListener(new ChangeListener() {

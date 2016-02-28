@@ -16,6 +16,7 @@ public class ScrollView extends JPanel implements IView {
     public ScrollView(Model model){
         super();
         this.model=model;
+        this.setBackground(Color.darkGray);
         GraphicView graphicView = new GraphicView(model);
         flow=new FlowLayout(FlowLayout.LEFT,0,0);
         spring=new SpringLayout();

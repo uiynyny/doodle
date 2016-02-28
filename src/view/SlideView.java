@@ -81,5 +81,14 @@ public class SlideView extends JPanel implements IView {
         play.setEnabled(model.maxCounter>0);
         start.setEnabled(model.getCounter()>0);
         end.setEnabled(model.getCounter()<model.maxCounter);
+        if(model.getPlayflag()){
+            play.setEnabled(false);
+            start.setEnabled(false);
+            end.setEnabled(false);
+            timeSlider.setEnabled(false);
+        }else{
+            timeSlider.setEnabled(true);
+
+        }
     }
 }

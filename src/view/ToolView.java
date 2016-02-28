@@ -28,7 +28,6 @@ public class ToolView extends JToolBar implements IView{
     private JButton colorBlue = new JButton();
     private JPanel ccPanel = new JPanel();
     private JColorChooser colorChooser = new JColorChooser(Color.BLACK);
-    //private JButton openCC = new JButton("ColorChooser");
     private Color newColor;
 
 
@@ -42,7 +41,7 @@ public class ToolView extends JToolBar implements IView{
 
     private void layoutView(){
         this.setLayout(new BorderLayout());
-        this.setBackground(Color.gray);
+        this.setBackground(Color.darkGray);
         setColorBox();
         setToolBox();
         this.add(toolBox,BorderLayout.NORTH);

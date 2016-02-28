@@ -3,6 +3,7 @@ import view.*;
 import view.MenuBar;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,7 +24,7 @@ public class Main {
         frame.setJMenuBar(mb);
         frame.setLayout(new BorderLayout());
         frame.add(slideView,BorderLayout.SOUTH);
-        frame.add(toolView,BorderLayout.WEST);
+        frame.add(toolView, BorderLayout.WEST);
         frame.add(scrollPane,BorderLayout.CENTER);
 
         scrollPane.getHorizontalScrollBar().addMouseMotionListener(new MouseMotionAdapter() {
@@ -50,6 +51,7 @@ public class Main {
         });
 
         frame.setSize(600,400);
+        frame.setMinimumSize(new Dimension(480,380));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

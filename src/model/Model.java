@@ -37,6 +37,9 @@ public class Model extends Object {
         playflag=b;
     }
 
+    public Boolean getPlayflag(){
+        return playflag;
+    }
     public void setDirty(Boolean b){
         dirty=b;
         updateAllViews();
